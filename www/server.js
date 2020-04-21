@@ -28,12 +28,18 @@ const util_1 = require("./util/util");
             return res.status(400)
                 .send(`image_url is required`);
         }
-        const filteredPath = yield util_1.filterImageFromURL(image_url);
-        res.sendFile(filteredPath);
-        res.on("finish", () => {
-            util_1.deleteLocalFiles([filteredPath]);
-        });
-        res.status(200);
+        try {
+            const filteredPath = yield util_1.filterImageFromURL(image_url);
+            res.sendFile(filteredPath);
+            res.on("finish", () => {
+                util_1.deleteLocalFiles([filteredPath]);
+            });
+            res.status(200);
+        }
+        catch (e) {
+            return res.status(400)
+                .send(e);
+        }
     }));
     // Root Endpoint
     // Displays a simple message to the user

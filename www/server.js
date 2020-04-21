@@ -37,7 +37,7 @@ const util_1 = require("./util/util");
             res.status(200);
         }
         catch (e) {
-            return res.status(400)
+            return res.status(422)
                 .send(e);
         }
     }));

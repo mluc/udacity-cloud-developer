@@ -28,6 +28,30 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost:8082/filteredimage?image_url=https://udagram-mluc-dev.s3.amazonaws.com/hqUy9kw.jpg",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}/filteredimage?image_url=https://udagram-mluc-dev.s3.amazonaws.com/hqUy9kw.jpg",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"filteredimage"
+					],
+					"query": [
+						{
+							"key": "image_url",
+							"value": "https://udagram-mluc-dev.s3.amazonaws.com/hqUy9kw.jpg"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [

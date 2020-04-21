@@ -20,12 +20,17 @@ import {deleteLocalFiles, filterImageFromURL} from "./util/util";
       return res.status(400)
           .send(`image_url is required`);
     }
-    const filteredPath = await filterImageFromURL(image_url);
-    res.sendFile(filteredPath);
-    res.on("finish", () => {
-      deleteLocalFiles([filteredPath]);
-    });
-    res.status(200);
+    try {
+      const filteredPath = await filterImageFromURL(image_url);
+      res.sendFile(filteredPath);
+      res.on("finish", () => {
+        deleteLocalFiles([filteredPath]);
+      });
+      res.status(200);
+    } catch (e) {
+      return res.status(400)
+          .send(e);
+    }
   } );
 
   // Root Endpoint

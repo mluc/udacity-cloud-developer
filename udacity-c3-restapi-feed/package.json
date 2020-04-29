@@ -42,6 +42,7 @@
     "codelyzer": "~4.5.0",
     "mocha": "^6.2.3",
     "rxjs": "^6.5.5",
+    "sequelize-cli": "^5.5.1",
     "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^5.20.1",
     "typescript": "^3.8.3"

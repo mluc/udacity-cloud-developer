@@ -29,7 +29,6 @@ const c = config.dev;
 
   // Root URI call
   app.get( '/', async ( req, res ) => {
-    console.log('+++++++++++++++++ in /');
     res.send( '/api/v0/' );
   } );
 

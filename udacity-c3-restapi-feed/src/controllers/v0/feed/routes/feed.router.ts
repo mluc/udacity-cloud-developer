@@ -15,13 +15,15 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
 
 
      const token_bearer = req.headers.authorization.split(' ');
-     if (token_bearer.length != 2) {
+     if (token_bearer.length !== 2) {
          return res.status(401).send({ message: 'Malformed token.' });
      }
-
+     console.log('+++ token_bearer ', token_bearer)
      const token = token_bearer[1];
+     console.log('++++++ token ', token, c.config.jwt.secret)
      return jwt.verify(token, c.config.jwt.secret , (err, decoded) => {
        if (err) {
+           // console.log('+++++ err ', err)
          return res.status(500).send({ auth: false, message: 'Failed to authenticate.' });
        }
        return next();
@@ -30,6 +32,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
 
 // Get all feed items
 router.get('/', async (req: Request, res: Response) => {
+    console.log('++++++ in feed router /')
     const items = await FeedItem.findAndCountAll({order: [['id', 'DESC']]});
     items.rows.map((item) => {
             if (item.url) {
@@ -42,6 +45,7 @@ router.get('/', async (req: Request, res: Response) => {
 // Get a specific resource
 router.get('/:id',
     async (req: Request, res: Response) => {
+    console.log('++++++ in feed router id')
     const { id } = req.params;
     const item = await FeedItem.findByPk(id);
     res.send(item);
@@ -92,6 +96,7 @@ router.post('/',
     });
 
     const saved_item = await item.save();
+    console.log('++++++ saved_item', saved_item)
 
     saved_item.url = AWS.getGetSignedUrl(saved_item.url);
     res.status(201).send(saved_item);

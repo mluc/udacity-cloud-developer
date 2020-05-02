@@ -4,7 +4,7 @@ services:
       container_name: reverseproxy
       build:
         context: .
-      image: mluc/reverseproxy
+      image: myluc/reverseproxy
       volumes:
         - .:/etc/nginx/
       ports:
@@ -17,7 +17,7 @@ services:
     container_name: backend-user
     build:
       context: ../../udacity-c3-restapi-user
-    image: mluc/udacity-restapi-user
+    image: myluc/udacity-restapi-user
     environment:
       POSTGRESS_USERNAME: "udagrammlucdev"
       POSTGRESS_PASSWORD: "1234Qwer"
@@ -32,7 +32,7 @@ services:
     container_name: backend-feed
     build:
       context: ../../udacity-c3-restapi-feed
-    image: mluc/udacity-restapi-feed
+    image: myluc/udacity-restapi-feed
     volumes:
       - $HOME/.aws:/root/.aws
     environment:
@@ -48,6 +48,6 @@ services:
   frontend:
     build:
       context: ../../udacity-c3-frontend
-    image: mluc/udacity-frontend:local
+    image: myluc/udacity-frontend:local
     ports:
       - "8100:80"

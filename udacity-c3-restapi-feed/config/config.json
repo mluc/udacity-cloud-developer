@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "udagrammlucdev",
-    "password": "1234Qwer",
-    "database": "udagrammlucdev",
-    "host": "udagrammlucdev.csftjr7i8wz4.us-east-1.rds.amazonaws.com",
-    "dialect": "postgres",
+    "username": "root",
+    "password": null,
+    "database": "database_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
     "operatorsAliases": false
   },
   "test": {

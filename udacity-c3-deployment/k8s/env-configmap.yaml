@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 data:
-  AWS_BUCKET: dWRhZ3JhbS1tbHVjLXByb2Q=
-  AWS_PROFILE: ZGVmYXVsdA==
-  AWS_REGION: dXMtZWFzdC0x
-  JWT_SECRET: cHJvamVjdDM=
-  POSTGRESS_DB: dWRhZ3JhbW1sdWNwcm9k
-  POSTGRESS_HOST: dWRhZ3JhbW1sdWNwcm9kLmNxdnZ2c3B0cmttdC51cy1lYXN0LTEucmRzLmFtYXpvbmF3cy5jb20=
+  AWS_BUCKET: udagram-mluc-prod
+  AWS_PROFILE: default
+  AWS_REGION: us-east-1
+  JWT_SECRET: project3
+  POSTGRESS_DB: udagrammlucprod
+  POSTGRESS_HOST: udagrammlucprod.cqvvvsptrkmt.us-east-1.rds.amazonaws.com
   URL: http://localhost:8100  
 metadata:
   name: env-config

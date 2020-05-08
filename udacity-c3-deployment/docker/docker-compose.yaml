@@ -5,8 +5,6 @@ services:
       build:
         context: .
       image: myluc/reverseproxy
-      volumes:
-        - .:/etc/nginx/
       ports:
           - 8080:8080
       restart: always

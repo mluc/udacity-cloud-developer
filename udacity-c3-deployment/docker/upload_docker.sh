@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e -x
-sudo docker login --username myluc --password 828ec68f-cd99-4d40-882c-74be569e23c0
+sudo docker login --username myluc --password "$dockerhub"
 
 sudo docker system prune -f
 

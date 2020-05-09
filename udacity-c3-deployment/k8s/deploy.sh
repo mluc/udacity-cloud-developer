@@ -16,6 +16,8 @@ cat ~/.kube/config
 
 eksctl get cluster -n prod2 -r us-east-1 -p default
 
+cd udacity-c3-deployment/k8s/
+
 kubectl apply -f backend-feed-deployment.yaml
 kubectl apply -f backend-feed-service.yaml
 

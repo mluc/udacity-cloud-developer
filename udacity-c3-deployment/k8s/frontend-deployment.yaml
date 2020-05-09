@@ -3,24 +3,19 @@ kind: Deployment
 metadata:
   labels:
     service: frontend
-    track: stable
-  name: frontend
+    track: canary
+  name: frontend-canary
 spec:
   replicas: 2
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 0
-      maxSurge: 1
   template:
     metadata:
       labels:
         service: frontend
         api: external
-        track: stable
+        track: canary
     spec:
       containers:
-      - image: myluc/udacity-frontend:V4
+      - image: myluc/udacity-frontend:V8
         name: frontend
         imagePullPolicy: Always          
         ports:

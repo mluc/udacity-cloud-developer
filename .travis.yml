@@ -25,7 +25,7 @@ before_install:
   - aws-iam-authenticator help
 
 
-
 script:
-  - bash ./upload_docker.sh
+  - bash ./udacity-c3-deployment/docker/upload_docker.sh
+  - bash ./udacity-c3-deployment/k8s/deploy.sh
 

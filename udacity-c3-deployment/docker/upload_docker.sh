@@ -4,6 +4,8 @@ sudo docker login --username myluc --password 828ec68f-cd99-4d40-882c-74be569e23
 
 sudo docker system prune -f
 
+cd udacity-c3-deployment/docker/
+pwd
 
 dockerpath=myluc/udacity-restapi-feed:V3
 sudo docker build -t $dockerpath ../../udacity-c3-restapi-feed

@@ -11,7 +11,7 @@ echo "aws_secret_access_key = $aws_secret_access_key" >> ~/.aws/credentials
 
 mkdir ~/.kube
 touch ~/.kube/config
-cp kube_config ~/.kube/config
+cp udacity-c3-deployment/k8s/kube_config ~/.kube/config
 cat ~/.kube/config
 
 eksctl get cluster -n prod2 -r us-east-1 -p default

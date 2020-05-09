@@ -1,0 +1,29 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJd01EVXdPREl3TlRrME5sb1hEVE13TURVd05qSXdOVGswTmxvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTVViCkgzdk94SGJuODVMT2dhTDdDelVBalBKeGE5ZHM5dllTQUJNQmM1UWxCMlcxQXM1cXFKQmpZbExkWnBjSVJIVFgKdllYYkJMOTFtZXRLZmdqcFpTRC96d3lNbk5BZGZYL1hubndvUVJWaXV6WjRMSjdKTlY1TjdGVjNKeWU1NWVERwpHNDN2amtRZmtVSE81WGdqZVRWdysrdDQvYTlwS2tIdW9tT3hCZlh0ZDd4ZFgzYmxHVVBmTWZ4UEVtOW9yRTdyCmxqNW5OWE5nczdtZk1nUWd5OFYwNEhlWjJjblg5TmE4ZlBpajZXTVoxRDQ5REw2YWVBMi9hNzJqNU41c3pWVGMKSWY2V0U5Vm0zbjhTM1dHSEhoQW1LL281NW9iV3Y3OERPSHFsODl4V1pzUlJ5c3FsOCtDckZ5bHZZd3hJWHlWQwp5RGE2dGZmTms5b3JKclB1VFhrQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKOGNGWTFCWXpWb1Z6bDFsZkdyeU9WSmNCWUcKUlZFdWV1Szd1MFgvQzAyWm9HTkN4SFZSMzk0RysyekNYVXp3cCt4bDVHMWZiRXY0YXVkMTNlN3pzdXZkT1ZrYwpjQzM4WHRtMlI5Z0FZaHJCcEkzZVZncVVIYkFSYlpWOVE0a0orUVVuTXZlS2U0Nld1M3BpWHFYR2gyd09MQndoCmZjQUx0OS9xK0IrZlI1R1lTcWhFNHdrY0k3U1VxcURidVFGYWFpZzdvV2lNVE5QR3BrS05jNHRMN093RmNrRkgKQVdZT0xJekpqZFNvMzZvT0lCWUtqeC9EcmdUSmZEeXFhVFJDUlU4cVYyRkFjMDUzUDBxRHRWaHZoSHlYOWR2TApvV25wbHg2MDRVZ294V3kyZWlBQWh4aWc5YVR3N1VsZldOcVI3V2UrT29kaVBPdHpsTnI0VGw2UTJqZz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    server: https://DA0B13196297CCFBCDBCF0C2DF1463D5.gr7.us-east-1.eks.amazonaws.com
+  name: prod2.us-east-1.eksctl.io
+contexts:
+- context:
+    cluster: prod2.us-east-1.eksctl.io
+    user: udacity@prod2.us-east-1.eksctl.io
+  name: udacity@prod2.us-east-1.eksctl.io
+current-context: udacity@prod2.us-east-1.eksctl.io
+kind: Config
+preferences: {}
+users:
+- name: udacity@prod2.us-east-1.eksctl.io
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      args:
+      - token
+      - -i
+      - prod2
+      command: aws-iam-authenticator
+      env:
+      - name: AWS_STS_REGIONAL_ENDPOINTS
+        value: regional
+      - name: AWS_DEFAULT_REGION
+        value: us-east-1

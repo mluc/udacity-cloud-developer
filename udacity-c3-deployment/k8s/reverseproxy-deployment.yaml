@@ -17,7 +17,7 @@ spec:
         service: reverseproxy
     spec:
       containers:
-      - image: myluc/reverseproxy
+      - image: myluc/reverseproxy:V3
         name: reverseproxy
         imagePullPolicy: Always          
         resources:

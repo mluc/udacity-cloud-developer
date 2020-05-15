@@ -22,6 +22,7 @@ provider:
         - dynamodb:PutItem
         - dynamodb:GetItem
         - dynamodb:DeleteItem
+        - dynamodb:UpdateItem
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
 
 functions:
@@ -47,14 +48,15 @@ functions:
           cors: true
           authorizer: Auth
 
-#  # TODO: Configure this function
-#  UpdateTodo:
-#    handler: src/lambda/http/updateTodo.handler
-#    events:
-#      - http:
-#          method: patch
-#          path: todos/{todoId}
-#
+  UpdateTodo:
+    handler: src/lambda/http/updateTodo.handler
+    events:
+      - http:
+          method: patch
+          path: todos/{todoId}
+          cors: true
+          authorizer: Auth
+
   DeleteTodo:
     handler: src/lambda/http/deleteTodo.handler
     events:
@@ -85,3 +87,5 @@ resources:
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
         TableName: ${self:provider.environment.TODOS_TABLE}
+
+        # TODO: LocalSecondaryIndexes

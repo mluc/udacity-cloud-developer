@@ -25,8 +25,8 @@ provider:
 
 functions:
 
-#  Auth:
-#    handler: src/lambda/auth/auth0Authorizer.handler
+  Auth:
+    handler: src/lambda/auth/auth0Authorizer.handler
 
   GetTodos:
     handler: src/lambda/http/getTodos.handler
@@ -34,6 +34,8 @@ functions:
       - http:
           method: get
           path: todos
+          cors: true
+          authorizer: Auth
 
   CreateTodo:
     handler: src/lambda/http/createTodo.handler
@@ -41,6 +43,8 @@ functions:
       - http:
           method: post
           path: todos
+          cors: true
+          authorizer: Auth
 
 #  # TODO: Configure this function
 #  UpdateTodo:

@@ -7,6 +7,7 @@ export class TodoAccess {
 
     constructor(
         private readonly docClient: DocumentClient = new AWS.DynamoDB.DocumentClient(),
+        private readonly indexName = process.env.INDEX_NAME,
         private readonly todosTable = process.env.TODOS_TABLE) {
     }
 
@@ -14,8 +15,13 @@ export class TodoAccess {
         console.log('Data Layer getAllTodoItems', userId);
 
         // TODO: use query to get todo items from user id
-        const result = await this.docClient.scan({
-            TableName: this.todosTable
+        const result = await this.docClient.query({
+            TableName: this.todosTable,
+            IndexName: this.indexName,
+            KeyConditionExpression: 'userId = :userId',
+            ExpressionAttributeValues: {
+                ':userId': userId
+            }
         }).promise();
 
         const items = result.Items;

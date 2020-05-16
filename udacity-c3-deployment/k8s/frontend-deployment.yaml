@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   labels:
     service: frontend
-    track: stable
-  name: frontend
+    track: canary
+  name: frontend-canary
 spec:
   replicas: 2
   template:
     metadata:
       labels:
         service: frontend
-        track: stable
         api: external
+        track: canary
     spec:
       containers:
-      - image: myluc/udacity-frontend:V5
+      - image: myluc/udacity-frontend:V7
         name: frontend
         imagePullPolicy: Always          
         ports:

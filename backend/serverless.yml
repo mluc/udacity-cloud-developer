@@ -4,6 +4,8 @@ service:
 plugins:
   - serverless-webpack
   - serverless-iam-roles-per-function
+  - serverless-reqvalidator-plugin
+  - serverless-plugin-tracing
 
 provider:
   name: aws
@@ -21,6 +23,7 @@ provider:
     INDEX_NAME: IndexName
     IMAGES_S3_BUCKET: todos-items-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
+
 
 functions:
 
@@ -53,11 +56,22 @@ functions:
           path: todos
           cors: true
           authorizer: Auth
+          reqValidatorName: RequestBodyValidator
+          request:
+            schema:
+              application/json: ${file(models/create-todo-request.json)}
+
     iamRoleStatements:
       - Effect: Allow
         Action:
           - dynamodb:PutItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
+      - Effect: Allow
+        Action:
+          - xray:PutTraceSegments
+          - xray:PutTelemetryRecords
+        Resource:
+          - '*'
 
 
   UpdateTodo:
@@ -68,11 +82,21 @@ functions:
           path: todos/{todoId}
           cors: true
           authorizer: Auth
+          reqValidatorName: RequestBodyValidator
+          request:
+            schema:
+              application/json: ${file(models/update-todo-request.json)}
     iamRoleStatements:
       - Effect: Allow
         Action:
           - dynamodb:UpdateItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
+      - Effect: Allow
+        Action:
+          - xray:PutTraceSegments
+          - xray:PutTelemetryRecords
+        Resource:
+          - '*'
 
   DeleteTodo:
     handler: src/lambda/http/deleteTodo.handler
@@ -87,6 +111,12 @@ functions:
         Action:
           - dynamodb:DeleteItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
+      - Effect: Allow
+        Action:
+          - xray:PutTraceSegments
+          - xray:PutTelemetryRecords
+        Resource:
+          - '*'
 
   GenerateUploadUrl:
     handler: src/lambda/http/generateUploadUrl.handler
@@ -107,6 +137,12 @@ functions:
           - s3:PutObject
           - s3:GetObject
         Resource: arn:aws:s3:::${self:provider.environment.IMAGES_S3_BUCKET}/*
+      - Effect: Allow
+        Action:
+          - xray:PutTraceSegments
+          - xray:PutTelemetryRecords
+        Resource:
+          - '*'
 
 resources:
   Resources:
@@ -132,6 +168,15 @@ resources:
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
+
+    RequestBodyValidator:
+      Type: AWS::ApiGateway::RequestValidator
+      Properties:
+        Name: 'request-body-validator'
+        RestApiId:
+          Ref: ApiGatewayRestApi
+        ValidateRequestBody: true
+        ValidateRequestParameters: false
 
     AttachmentsBucket:
       Type: AWS::S3::Bucket

@@ -17,7 +17,7 @@ sudo docker build -t $dockerpath ../../udacity-c3-restapi-user
 sudo docker push $dockerpath
 
 
-dockerpath=myluc/udacity-frontend:V3
+dockerpath=myluc/udacity-frontend:V5
 sudo docker build -t $dockerpath ../../udacity-c3-frontend
 sudo docker push $dockerpath
 

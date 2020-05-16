@@ -30,3 +30,9 @@ export async function createTodoItem(
         done: false
     });
 }
+
+export async function deleteTodoItem(todoId: string, userId: string): Promise<void> {
+
+    console.log('Business logic deleteTodoItem ', todoId, userId);
+    await todoAccess.deleteTodoItem(todoId,userId);
+}

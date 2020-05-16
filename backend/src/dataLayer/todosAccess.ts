@@ -37,4 +37,13 @@ export class TodoAccess {
 
         return todoItem;
     }
+
+    async deleteTodoItem(todoId: string, userId: string): Promise<void> {
+        console.log('Data Layer deleteTodoItem', todoId, userId);
+        await this.docClient.delete({
+            TableName: this.todosTable,
+            Key: {todoId: todoId, userId: userId}
+        }).promise();
+
+    }
 }

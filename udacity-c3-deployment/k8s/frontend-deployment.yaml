@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     service: frontend
+    track: stable
   name: frontend
 spec:
   replicas: 2
@@ -10,10 +11,11 @@ spec:
     metadata:
       labels:
         service: frontend
+        track: stable
         api: external
     spec:
       containers:
-      - image: myluc/udacity-frontend:V1
+      - image: myluc/udacity-frontend:V3
         name: frontend
         imagePullPolicy: Always          
         ports:

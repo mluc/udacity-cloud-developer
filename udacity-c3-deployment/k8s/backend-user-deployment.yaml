@@ -17,7 +17,7 @@ spec:
         service: backend-user
     spec:
       containers:
-      - image: myluc/udacity-restapi-user:V1
+      - image: myluc/udacity-restapi-user:V2
         name: backend-user 
         imagePullPolicy: Always  
         resources:

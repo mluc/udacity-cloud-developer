@@ -43,3 +43,22 @@ export async function updateTodoItem(updatedTodo: UpdateTodoRequest, todoId: str
     console.log('Business logic updateTodoItem ', updatedTodo, userId);
     await todoAccess.updateTodoItem(updatedTodo, todoId, userId);
 }
+
+
+export async function getUploadUrl(imageId: string): Promise<string> {
+
+    console.log('Business logic getUploadUrl ');
+    return await todoAccess.getUploadUrl(imageId);
+}
+
+export async function todoExists(todoId: string, userId: string): Promise<boolean> {
+
+    console.log('Business logic todoExists ', todoId, userId);
+    return await todoAccess.todoExists(todoId, userId);
+}
+
+export async function addAttachmentUrl(todoId: string, userId: string, imageId: string): Promise<void> {
+
+    console.log('Business logic addAttachmentUrl ', todoId, userId, imageId);
+    await todoAccess.addAttachmentUrl(todoId, userId, imageId);
+}

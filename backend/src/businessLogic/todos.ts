@@ -5,6 +5,7 @@ import {TodoAccess} from '../dataLayer/todosAccess';
 import {CreateTodoRequest} from '../requests/CreateTodoRequest';
 import {getUserId} from '../lambda/utils';
 import {APIGatewayProxyEvent} from 'aws-lambda';
+import {UpdateTodoRequest} from '../requests/UpdateTodoRequest';
 
 const todoAccess = new TodoAccess();
 
@@ -34,5 +35,11 @@ export async function createTodoItem(
 export async function deleteTodoItem(todoId: string, userId: string): Promise<void> {
 
     console.log('Business logic deleteTodoItem ', todoId, userId);
-    await todoAccess.deleteTodoItem(todoId,userId);
+    await todoAccess.deleteTodoItem(todoId, userId);
+}
+
+export async function updateTodoItem(updatedTodo: UpdateTodoRequest, todoId: string, userId: string): Promise<void> {
+
+    console.log('Business logic updateTodoItem ', updatedTodo, userId);
+    await todoAccess.updateTodoItem(updatedTodo, todoId, userId);
 }

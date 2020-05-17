@@ -15,7 +15,7 @@ spec:
         track: canary
     spec:
       containers:
-      - image: myluc/udacity-frontend:V7
+      - image: myluc/udacity-frontend:V9
         name: frontend
         imagePullPolicy: Always          
         ports:

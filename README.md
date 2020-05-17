@@ -15,8 +15,8 @@
 - Link: http://a890d69e558b44ad7a368808bbf0a5d9-1911941815.us-east-1.elb.amazonaws.com:8100/
 
 ## Travis-ci job log:
-- https://api.travis-ci.com/v3/job/330907726/log.txt
+- https://api.travis-ci.com/v3/job/335693921/log.txt
 
 ## Screenshot:
-- screenshot.pdf
+- capstone.pdf
 
